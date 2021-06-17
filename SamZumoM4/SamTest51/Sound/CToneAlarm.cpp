@@ -41,7 +41,7 @@ const CToneAlarm::Tone CToneAlarm::_tones[]
 	#define AP_NOTIFY_TONE_LOUD_VEHICLE_LOST_CTS 12
 	{ "MBT200>A#1", true },
 	#define AP_NOTIFY_TONE_LOUD_BATTERY_ALERT_CTS 13
-	{ "MBNT255>A#8A#8A#8A#8A#8A#8A#8A#8A#8A#8A#8A#8A#8A#8A#8A#8", true },
+	{ "MFNT255<<A#8A#8A#8A#8A#8A#8A#8A#8A#8A#8A#8A#8A#8A#8A#8A#8", true },
 	#define AP_NOTIFY_TONE_QUIET_COMPASS_CALIBRATING_CTS 14
 	{ "MBNT255<C16P2", true },
 	#define AP_NOTIFY_TONE_WAITING_FOR_THROW 15
@@ -116,12 +116,33 @@ void CToneAlarm::play_tone(const uint8_t tone_index)
 
 void CToneAlarm::Update()
 {
-	  // exit if buzzer is not enabled
+	  static uint32_t LastTime = 0;
+	//  xit if buzzer is not enabled
 // 	  if (buzzer_enabled() == false) 
 // 	  {
 // 		  return;
 // 	  }
 	  check_cont_tone();
+
+	  // check if battery status has changed
+	if (Config.m_RunningFlags.BATTERY_1_ALARM_CRITICAL  && (Core.millis() - LastTime)> 3000 ) 
+	{
+		// battery warning tune
+		play_tone(AP_NOTIFY_TONE_LOUD_BATTERY_ALERT_CTS);
+		 LastTime = Core.millis();
+		return;
+	}
+
+	  // check if battery status has changed
+	if (Config.m_RunningFlags.LOST_RC_SIGNAL && (Core.millis() - LastTime)> 4000 )  
+	{
+		  play_tone(AP_NOTIFY_TONE_LOUD_ATTENTION_NEEDED);
+		 LastTime = Core.millis();
+		  return;
+	}
+
+
+
 
 	  if (flags.powering_off) 
 	  {
@@ -228,16 +249,6 @@ void CToneAlarm::Update()
 		 }
 	  }
 
-	  // check if battery status has changed
-	  if (flags.failsafe_battery != Config.m_RunningFlags.BATTERY_1_ALARM_CRITICAL) 
-	  {
-		  flags.failsafe_battery = Config.m_RunningFlags.BATTERY_1_ALARM_CRITICAL;
-		  if (flags.failsafe_battery) 
-		  {
-			  // battery warning tune
-			  play_tone(AP_NOTIFY_TONE_LOUD_BATTERY_ALERT_CTS);
-		  }
-	  }
 
 // 	  // lost vehicle tone
 // 	  if (flags.vehicle_lost != AP_Notify::flags.vehicle_lost) 

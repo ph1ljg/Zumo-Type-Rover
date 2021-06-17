@@ -220,18 +220,18 @@ void CStatusControl::UpdateLedStatus()
 	{
 	case ALM_BATTERY_1_WARN:
 		CurrentColourSequence = SequenceBatteryWarning;
-		 Buzzer.Tone();
+		 //Buzzer.Tone();
 	break;
 	case ALM_BATTERY_2_WARN:
 		CurrentColourSequence = SequenceBatteryWarning;
-		Buzzer.Tone();
+		//Buzzer.Tone();
 	break;
 	case ALM_BATTERY_1_CRITICAL:
-		Buzzer.Tone();
+		//Buzzer.Tone();
 		CurrentColourSequence = SequenceBatteryFailPanic;
 	break;
 	case ALM_BATTERY_2_CRITICAL:
-		Buzzer.Tone();
+		//Buzzer.Tone();
 		CurrentColourSequence = SequenceBatteryFailPanic;
 	break;
 	case ALM_NAVIGATION_UPDATE_FAILED:
