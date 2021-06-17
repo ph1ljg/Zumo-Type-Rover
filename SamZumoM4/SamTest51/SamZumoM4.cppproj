@@ -1,0 +1,803 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="14.0">
+  <PropertyGroup>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>7.0</ProjectVersion>
+    <ToolchainName>com.Atmel.ARMGCC.CPP</ToolchainName>
+    <ProjectGuid>dce6c7e3-ee26-4d79-826b-08594b9ad897</ProjectGuid>
+    <avrdevice>ATSAMD51J19A</avrdevice>
+    <avrdeviceseries>none</avrdeviceseries>
+    <OutputType>Executable</OutputType>
+    <Language>CPP</Language>
+    <OutputFileName>$(MSBuildProjectName)</OutputFileName>
+    <OutputFileExtension>.elf</OutputFileExtension>
+    <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
+    <AssemblyName>SamTest51</AssemblyName>
+    <Name>SamZumoM4</Name>
+    <RootNamespace>SamTest51</RootNamespace>
+    <ToolchainFlavour>Native</ToolchainFlavour>
+    <KeepTimersRunning>true</KeepTimersRunning>
+    <OverrideVtor>false</OverrideVtor>
+    <CacheFlash>true</CacheFlash>
+    <ProgFlashFromRam>true</ProgFlashFromRam>
+    <RamSnippetAddress>0x20000000</RamSnippetAddress>
+    <UncachedRange />
+    <preserveEEPROM>true</preserveEEPROM>
+    <OverrideVtorValue>exception_table</OverrideVtorValue>
+    <BootSegment>2</BootSegment>
+    <ResetRule>0</ResetRule>
+    <eraseonlaunchrule>0</eraseonlaunchrule>
+    <EraseKey />
+    <AsfFrameworkConfig>
+      <framework-data>
+        <options />
+        <configurations />
+        <files />
+        <documentation help="" />
+        <offline-documentation help="" />
+        <dependencies>
+          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.43.0" />
+        </dependencies>
+      </framework-data>
+    </AsfFrameworkConfig>
+    <avrtool>com.atmel.avrdbg.tool.atmelice</avrtool>
+    <avrtoolserialnumber>J41800036296</avrtoolserialnumber>
+    <avrdeviceexpectedsignature>0x60060305</avrdeviceexpectedsignature>
+    <avrtoolinterface>SWD</avrtoolinterface>
+    <com_atmel_avrdbg_tool_atmelice>
+      <ToolOptions>
+        <InterfaceProperties>
+          <SwdClock>2000000</SwdClock>
+        </InterfaceProperties>
+        <InterfaceName>SWD</InterfaceName>
+      </ToolOptions>
+      <ToolType>com.atmel.avrdbg.tool.atmelice</ToolType>
+      <ToolNumber>J41800036296</ToolNumber>
+      <ToolName>Atmel-ICE</ToolName>
+    </com_atmel_avrdbg_tool_atmelice>
+    <avrtoolinterfaceclock>2000000</avrtoolinterfaceclock>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <ToolchainSettings>
+      <ArmGccCpp>
+        <armgcc.common.outputfiles.hex>True</armgcc.common.outputfiles.hex>
+        <armgcc.common.outputfiles.lss>True</armgcc.common.outputfiles.lss>
+        <armgcc.common.outputfiles.eep>True</armgcc.common.outputfiles.eep>
+        <armgcc.common.outputfiles.bin>True</armgcc.common.outputfiles.bin>
+        <armgcc.common.outputfiles.srec>True</armgcc.common.outputfiles.srec>
+        <armgcc.compiler.symbols.DefSymbols>
+          <ListValues>
+            <Value>NDEBUG</Value>
+          </ListValues>
+        </armgcc.compiler.symbols.DefSymbols>
+        <armgcc.compiler.directories.IncludePaths>
+          <ListValues>
+            <Value>%24(PackRepoDir)\arm\CMSIS\5.4.0\CMSIS\Core\Include\</Value>
+            <Value>%24(PackRepoDir)\atmel\SAMD51_DFP\1.2.139\samd51a\include</Value>
+          </ListValues>
+        </armgcc.compiler.directories.IncludePaths>
+        <armgcc.compiler.optimization.level>Optimize for size (-Os)</armgcc.compiler.optimization.level>
+        <armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>True</armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>
+        <armgcc.compiler.warnings.AllWarnings>True</armgcc.compiler.warnings.AllWarnings>
+        <armgcccpp.compiler.symbols.DefSymbols>
+          <ListValues>
+            <Value>NDEBUG</Value>
+          </ListValues>
+        </armgcccpp.compiler.symbols.DefSymbols>
+        <armgcccpp.compiler.directories.IncludePaths>
+          <ListValues>
+            <Value>%24(PackRepoDir)\arm\CMSIS\5.4.0\CMSIS\Core\Include\</Value>
+            <Value>%24(PackRepoDir)\atmel\SAMD51_DFP\1.2.139\samd51a\include</Value>
+          </ListValues>
+        </armgcccpp.compiler.directories.IncludePaths>
+        <armgcccpp.compiler.optimization.level>Optimize for size (-Os)</armgcccpp.compiler.optimization.level>
+        <armgcccpp.compiler.optimization.PrepareFunctionsForGarbageCollection>True</armgcccpp.compiler.optimization.PrepareFunctionsForGarbageCollection>
+        <armgcccpp.compiler.warnings.AllWarnings>True</armgcccpp.compiler.warnings.AllWarnings>
+        <armgcccpp.linker.libraries.Libraries>
+          <ListValues>
+            <Value>libm</Value>
+            <Value>libarm_cortexM4lf_math.a</Value>
+          </ListValues>
+        </armgcccpp.linker.libraries.Libraries>
+        <armgcccpp.linker.libraries.LibrarySearchPaths>
+          <ListValues>
+            <Value>%24(ProjectDir)\Device_Startup</Value>
+            <Value>F:\CSource3\SamRoverM4\SamTest51\Lib</Value>
+            <Value>F:\CSource3\SamZumoM4\SamTest51\Lib</Value>
+            <Value>D:\Projects\Phil\SamZumoM4\SamTest51\Lib</Value>
+          </ListValues>
+        </armgcccpp.linker.libraries.LibrarySearchPaths>
+        <armgcccpp.linker.optimization.GarbageCollectUnusedSections>True</armgcccpp.linker.optimization.GarbageCollectUnusedSections>
+        <armgcccpp.linker.miscellaneous.LinkerFlags>-Tsamd51j19a_flash.ld</armgcccpp.linker.miscellaneous.LinkerFlags>
+        <armgcccpp.assembler.general.IncludePaths>
+          <ListValues>
+            <Value>%24(PackRepoDir)\arm\CMSIS\5.4.0\CMSIS\Core\Include\</Value>
+            <Value>%24(PackRepoDir)\atmel\SAMD51_DFP\1.2.139\samd51a\include</Value>
+          </ListValues>
+        </armgcccpp.assembler.general.IncludePaths>
+        <armgcccpp.preprocessingassembler.general.IncludePaths>
+          <ListValues>
+            <Value>%24(PackRepoDir)\arm\CMSIS\5.4.0\CMSIS\Core\Include\</Value>
+            <Value>%24(PackRepoDir)\atmel\SAMD51_DFP\1.2.139\samd51a\include</Value>
+          </ListValues>
+        </armgcccpp.preprocessingassembler.general.IncludePaths>
+      </ArmGccCpp>
+    </ToolchainSettings>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <ToolchainSettings>
+      <ArmGccCpp>
+        <armgcc.common.outputfiles.hex>True</armgcc.common.outputfiles.hex>
+        <armgcc.common.outputfiles.lss>True</armgcc.common.outputfiles.lss>
+        <armgcc.common.outputfiles.eep>True</armgcc.common.outputfiles.eep>
+        <armgcc.common.outputfiles.bin>True</armgcc.common.outputfiles.bin>
+        <armgcc.common.outputfiles.srec>True</armgcc.common.outputfiles.srec>
+        <armgcc.compiler.symbols.DefSymbols>
+          <ListValues>
+            <Value>DEBUG</Value>
+            <Value>ARM_MATH_CM4</Value>
+          </ListValues>
+        </armgcc.compiler.symbols.DefSymbols>
+        <armgcc.compiler.directories.IncludePaths>
+          <ListValues>
+            <Value>%24(PackRepoDir)\arm\CMSIS\5.4.0\CMSIS\Core\Include\</Value>
+            <Value>%24(PackRepoDir)\atmel\SAMD51_DFP\1.2.139\samd51a\include</Value>
+          </ListValues>
+        </armgcc.compiler.directories.IncludePaths>
+        <armgcc.compiler.optimization.level>Optimize (-O1)</armgcc.compiler.optimization.level>
+        <armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>True</armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>
+        <armgcc.compiler.optimization.DebugLevel>Default (-g2)</armgcc.compiler.optimization.DebugLevel>
+        <armgcc.compiler.warnings.AllWarnings>True</armgcc.compiler.warnings.AllWarnings>
+        <armgcc.compiler.miscellaneous.OtherFlags>-std=gnu99  -mfloat-abi=hard -mfpu=fpv4-sp-d16</armgcc.compiler.miscellaneous.OtherFlags>
+        <armgcccpp.compiler.symbols.DefSymbols>
+          <ListValues>
+            <Value>DEBUG</Value>
+            <Value>__FPU_PRESENT=1</Value>
+            <Value>ARM_MATH_CM4</Value>
+          </ListValues>
+        </armgcccpp.compiler.symbols.DefSymbols>
+        <armgcccpp.compiler.directories.IncludePaths>
+          <ListValues>
+            <Value>../Device_Startup</Value>
+            <Value>%24(PackRepoDir)\arm\CMSIS\5.4.0\CMSIS\Core\Include\</Value>
+            <Value>%24(PackRepoDir)\atmel\SAMD51_DFP\1.2.139\samd51a\include</Value>
+            <Value>../Ahrs</Value>
+            <Value>../Core</Value>
+            <Value>../Fpv</Value>
+            <Value>../Math</Value>
+            <Value>../Motors</Value>
+            <Value>../Navigation</Value>
+            <Value>../Pid</Value>
+            <Value>../Receiver</Value>
+            <Value>../Sensors</Value>
+            <Value>../Servo</Value>
+            <Value>../Utils</Value>
+            <Value>../Led</Value>
+            <Value>..</Value>
+            <Value>../QSpiFlash</Value>
+            <Value>../Gps</Value>
+            <Value>../Attitude</Value>
+            <Value>../Head</Value>
+            <Value>../Avoidance</Value>
+            <Value>../Imu</Value>
+            <Value>../Compass</Value>
+            <Value>../Filters</Value>
+            <Value>../Sound</Value>
+          </ListValues>
+        </armgcccpp.compiler.directories.IncludePaths>
+        <armgcccpp.compiler.optimization.PrepareFunctionsForGarbageCollection>True</armgcccpp.compiler.optimization.PrepareFunctionsForGarbageCollection>
+        <armgcccpp.compiler.optimization.DebugLevel>Maximum (-g3)</armgcccpp.compiler.optimization.DebugLevel>
+        <armgcccpp.compiler.warnings.AllWarnings>True</armgcccpp.compiler.warnings.AllWarnings>
+        <armgcccpp.compiler.warnings.ExtraWarnings>True</armgcccpp.compiler.warnings.ExtraWarnings>
+        <armgcccpp.compiler.miscellaneous.OtherFlags>-mfloat-abi=hard -mfpu=fpv4-sp-d16</armgcccpp.compiler.miscellaneous.OtherFlags>
+        <armgcccpp.linker.libraries.Libraries>
+          <ListValues>
+            <Value>libm</Value>
+            <Value>libarm_cortexM4lf_math.a</Value>
+          </ListValues>
+        </armgcccpp.linker.libraries.Libraries>
+        <armgcccpp.linker.libraries.LibrarySearchPaths>
+          <ListValues>
+            <Value>%24(ProjectDir)\Device_Startup</Value>
+            <Value>F:\CSource3\SamZumoM4\SamTest51\Lib</Value>
+            <Value>D:\Projects\Phil\SamZumoM4\SamTest51\Lib</Value>
+          </ListValues>
+        </armgcccpp.linker.libraries.LibrarySearchPaths>
+        <armgcccpp.linker.optimization.GarbageCollectUnusedSections>True</armgcccpp.linker.optimization.GarbageCollectUnusedSections>
+        <armgcccpp.linker.memorysettings.ExternalRAM />
+        <armgcccpp.linker.miscellaneous.LinkerFlags>-Tsamd51j19a_flash.ld  -mfloat-abi=hard -mfpu=fpv4-sp-d16</armgcccpp.linker.miscellaneous.LinkerFlags>
+        <armgcccpp.linker.miscellaneous.OtherOptions>
+          <ListValues>
+            <Value>-lc -u _printf_float</Value>
+            <Value>-lc -lrdimon -u _printf_float</Value>
+          </ListValues>
+        </armgcccpp.linker.miscellaneous.OtherOptions>
+        <armgcccpp.assembler.general.IncludePaths>
+          <ListValues>
+            <Value>%24(PackRepoDir)\arm\CMSIS\5.4.0\CMSIS\Core\Include\</Value>
+            <Value>%24(PackRepoDir)\atmel\SAMD51_DFP\1.2.139\samd51a\include</Value>
+          </ListValues>
+        </armgcccpp.assembler.general.IncludePaths>
+        <armgcccpp.assembler.debugging.DebugLevel>Default (-g)</armgcccpp.assembler.debugging.DebugLevel>
+        <armgcccpp.preprocessingassembler.general.IncludePaths>
+          <ListValues>
+            <Value>%24(PackRepoDir)\arm\CMSIS\5.4.0\CMSIS\Core\Include\</Value>
+            <Value>%24(PackRepoDir)\atmel\SAMD51_DFP\1.2.139\samd51a\include</Value>
+          </ListValues>
+        </armgcccpp.preprocessingassembler.general.IncludePaths>
+        <armgcccpp.preprocessingassembler.debugging.DebugLevel>Default (-Wa,-g)</armgcccpp.preprocessingassembler.debugging.DebugLevel>
+      </ArmGccCpp>
+    </ToolchainSettings>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Ahrs\CAhrs.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Ahrs\CAhrs.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Attitude\CAttitudeControl.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Attitude\CAttitudeControl.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Avoidance\CBendyRuler.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Avoidance\CBendyRuler.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Avoidance\CFence.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Avoidance\CFence.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Avoidance\CObjAvoidDbase.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Avoidance\CObjAvoidDbase.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Avoidance\CAvoidance.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Avoidance\CAvoidance.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Avoidance\CProximity.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Avoidance\CProximity.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="CAlarm.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="CAlarm.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="CBuzzer.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="CBuzzer.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="cconfig.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="cconfig.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Compass\CCmps12.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Compass\CCmps12.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Compass\CCompass.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Compass\CCompass.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Core\CAnalog.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Core\CAnalog.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Core\CCore.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Core\CCore.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Core\CI2c.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Core\CI2c.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Core\CPinPeripheral.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Core\CPinPeripheral.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Core\Cpwm.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Core\Cpwm.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Core\CReset.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Core\CReset.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Core\CSercom.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Core\CSercom.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Core\CSetInterupts.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Core\CSetInterupts.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Core\CSoftwareSerial.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Core\CSoftwareSerial.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Core\CSpi.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Core\CSpi.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Core\CTimers.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Core\CTimers.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Core\CUart.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Core\CUart.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Core\Defines.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="CTaskManager.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="CTaskManager.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="CZumo.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="CZumo.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Device_Startup\clocks.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Device_Startup\clocks.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Device_Startup\startup_samd51.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Device_Startup\syscalls.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Device_Startup\system_samd51.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Filters\CHarmonicNotchFilter.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Filters\CHarmonicNotchFilter.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Filters\CLowPassFilter.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Filters\CLowPassFilter.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Filters\CLowPassFilter2p.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Filters\CLowPassFilter2p.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Filters\CNotchFilter.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Filters\CNotchFilter.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Fpv\CMax7456.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Fpv\CMax7456.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Fpv\COsd.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Fpv\COsd.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Fpv\CTrampProtocol.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Fpv\CTrampProtocol.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Gps\CGps.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Gps\CGps.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Gps\CUblox.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Gps\CUblox.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Gps\UbloxStructures.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Head\CHeadControl.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Head\CHeadControl.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Head\CHuskyMain.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Head\CHuskyMain.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Head\CHuskyProtocol.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Head\CHuskyProtocol.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Imu\CBN0055.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Imu\CBN0055.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Imu\CQuatToDcm.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Imu\CQuatToDcm.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Imu\Imu.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Imu\Imu.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Includes.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Interrupts.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Led\CLedDriver.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Led\CLedDriver.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Led\CToshibaLedDriver.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Led\CToshibaLedDriver.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Led\CWS2812.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Led\CWS2812.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="main.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Math\arm_math.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Math\CMyMath.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Math\CMyMath.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Math\Vector2.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Math\Vector2.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Math\imumaths.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Math\matrix.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Math\matrix3.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Math\matrix3.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Math\quaternion.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Math\rotations.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Math\vector.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Math\vector3.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Math\vector3.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Motors\CMotors.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Motors\CMotors.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Motors\CPCF8574.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Motors\CPCF8574.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Motors\CServo.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Motors\CServo.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Motors\CSteering.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Motors\CSteering.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Motors\CWheelEncoder.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Motors\CWheelEncoder.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Navigation\CL1Control.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Navigation\CL1Control.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Navigation\CNavigation.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Navigation\CNavigation.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Navigation\CNavigationFunctions.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Navigation\CNavigationFunctions.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Navigation\CPathPlanner.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Navigation\CPathPlanner.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Pid\Cid3.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Pid\Cid3.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Pid\CPidSimp.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Pid\CPidSimp.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Pid\CPid_P.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Pid\CPid_P.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Pid\CPid_PID.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Pid\CPid_PID.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="QSpiFlash\CQSpi.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="QSpiFlash\CQSpi.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="QSpiFlash\CQSpiFlash.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="QSpiFlash\CQSpiFlash.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="QSpiFlash\QSpiFlashDevices.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Receiver\CFrskyTelemetry.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Receiver\CFrskyTelemetry.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Receiver\CRadioControl.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Receiver\CRadioControl.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Receiver\CSbusDecoder.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Receiver\CSbusDecoder.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Sensors\CSensors.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Sensors\CSensors.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Sensors\CTFMiniPlus.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Sensors\CTFMiniPlus.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Sensors\CVL53L1X.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Sensors\CVL53L1X.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Sensors\CVL53OX.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Sensors\CVL53OX.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Sensors\CTFmini.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Sensors\CTFMini.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Sound\CTone.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Sound\CTone.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Sound\CPlayer.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Sound\CPlayer.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Sound\CToneAlarm.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Sound\CToneAlarm.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="updates.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Utils\CCirBuffer.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Utils\CCirBuffer.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Utils\CDebugDisplay.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Utils\CDebugDisplay.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Utils\CFilters.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Utils\CFilters.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Utils\CGuiFunctions.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Utils\CGuiFunctions.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Utils\CStatusControl.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Utils\CStatusControl.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Utils\CObjectBuffer.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Utils\CObjectBuffer.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Utils\Compiler.h">
+      <SubType>compile</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Device_Startup\" />
+    <Folder Include="Core" />
+    <Folder Include="Navigation" />
+    <Folder Include="Motors" />
+    <Folder Include="Math" />
+    <Folder Include="Fpv" />
+    <Folder Include="Ahrs" />
+    <Folder Include="Led" />
+    <Folder Include="Gps" />
+    <Folder Include="Attitude" />
+    <Folder Include="Head" />
+    <Folder Include="Avoidance" />
+    <Folder Include="Imu" />
+    <Folder Include="Compass" />
+    <Folder Include="Filters" />
+    <Folder Include="Sound" />
+    <Folder Include="Utils" />
+    <Folder Include="Pid" />
+    <Folder Include="Receiver" />
+    <Folder Include="Sensors" />
+    <Folder Include="QSpiFlash" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Device_Startup\samd51j19a_flash.ld">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="Device_Startup\samd51j19a_sram.ld">
+      <SubType>compile</SubType>
+    </None>
+  </ItemGroup>
+  <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
+</Project>
