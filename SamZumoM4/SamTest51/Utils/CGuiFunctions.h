@@ -363,7 +363,7 @@ typedef	struct  __attribute__ ((packed))
 	int16_t FrontRightMotorTrim;
 	int16_t FrontLeftMotorTrim;
 	int16_t RearRightMotorTrim;
-	uint16_t RearLeftMotorTrim;
+	int16_t RearLeftMotorTrim;
 }MotorTrim_t;
 
 

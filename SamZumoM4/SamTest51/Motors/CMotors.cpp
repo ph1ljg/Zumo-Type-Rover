@@ -111,7 +111,7 @@ void CMotors::OutputThrottle(eMotors_t Motor, float throttle)
 	throttle = GetScaledThrottle(throttle);	// constrain and scale output
 	throttle = GetRateControlledThrottle(Motor, throttle, m_Motor_dt);		// apply rate control
 
-	SetMotorPwm(Motor,throttle);
+	SetMotorPwm(Motor,throttle,false);
 	LastTime = Core.millis();
 	
 }
@@ -268,77 +268,7 @@ float CMotors::GetScaledThrottle(float throttle) const
 }
 
 
-// void CMotors::SetMotorSkidSteer(int Speed, int Steer)
-// {
-// 	CMyMath Math;
-// 	uint16_t RightMotorsPwm ;
-// 	uint16_t LeftMotorsPwm ;
-// 	int SpeedTargetRight;  //target speed
-// 	int SpeedTargetLeft;  //target speed
-// 	uint8_t Motor = 0;
-// 	if (Speed == 0 && Steer !=0)
-// 	{
-// 		SpeedTargetLeft = Steer;
-// 		SpeedTargetRight = -Steer;
-// 	}
-// 	else
-// 	{
-// 		if(Config.m_RunningFlags.IN_REVERSE)
-// 		Speed *= -1;
-// 		SpeedTargetLeft = Speed * ((-255 - Steer) / -255.0);
-// 		SpeedTargetRight = Speed * ((255 - Steer) / 255.0);
-// 		
-// 		if (Speed > 0 && SpeedTargetLeft > Speed)
-// 		SpeedTargetLeft = Speed;
-// 		if (Speed > 0 && SpeedTargetRight > Speed)
-// 		SpeedTargetRight = Speed;
-// 
-// 		if (Speed < 0 && SpeedTargetLeft < Speed)
-// 		SpeedTargetLeft = Speed;
-// 		if (Speed < 0 && SpeedTargetRight < Speed)
-// 		SpeedTargetRight = Speed;
-// 
-// 	}
-// 	if(SpeedTargetRight <0)
-// 	{
-// 		PCF8574.SetOutput(FRONT_RIGHT_MOTOR,false);
-// 		PCF8574.SetOutput(REAR_RIGHT_MOTOR,false);
-// 		Motors.m_Motors.FrontRightMotor.Direction = MOTOR_REVERSE;
-// 		Motors.m_Motors.RearRightMotor.Direction = MOTOR_REVERSE;
-// 	}
-// 	else
-// 	{
-// 		PCF8574.SetOutput(FRONT_RIGHT_MOTOR,true);
-// 		PCF8574.SetOutput(REAR_RIGHT_MOTOR,true);
-// 		Motors.m_Motors.FrontRightMotor.Direction = MOTOR_FORWARD;
-// 		Motors.m_Motors.RearRightMotor.Direction = MOTOR_FORWARD;
-// 	}
-// 	
-// 	if(SpeedTargetLeft <0)
-// 	{
-// 		PCF8574.SetOutput(FRONT_LEFT_MOTOR,true);
-// 		PCF8574.SetOutput(REAR_LEFT_MOTOR,true);
-// 		Motors.m_Motors.FrontLeftMotor.Direction = MOTOR_REVERSE;
-// 		Motors.m_Motors.RearLeftMotor.Direction = MOTOR_REVERSE;
-// 	}
-// 	else
-// 	{
-// 		PCF8574.SetOutput(FRONT_LEFT_MOTOR,false);
-// 		PCF8574.SetOutput(REAR_LEFT_MOTOR,false);
-// 		Motors.m_Motors.FrontLeftMotor.Direction = MOTOR_FORWARD;
-// 		Motors.m_Motors.RearLeftMotor.Direction = MOTOR_FORWARD;
-// 	}
-// 	SpeedTargetLeft = abs(SpeedTargetLeft);
-// 	SpeedTargetRight = abs(SpeedTargetRight);
-// 
-// 	RightMotorsPwm = Math.Map(SpeedTargetRight,0,255,100,5000);
-// 	LeftMotorsPwm = Math.Map(SpeedTargetLeft,0,255,100,5000);
-// 	Motor |= ((1<<FRONT_RIGHT_MOTOR)| (1<<REAR_RIGHT_MOTOR));
-// 	Motors.SetMotorSpeed(Motor,(float) RightMotorsPwm,SPEED_PWM,false);
-// 	Motor = 0;
-// 	Motor |= ((1<<FRONT_LEFT_MOTOR)| (1<<REAR_LEFT_MOTOR));
-// 	Motors.SetMotorSpeed(Motor, LeftMotorsPwm,SPEED_PWM);
-// }
+
 
 
 void CMotors::Output( float steering, float throttle,float GroundSpeed)
@@ -371,7 +301,7 @@ void CMotors::output_skid_steering( float steering, float throttle)
 	if (!Config.m_RunningFlags.ARMED) 
 	{
 		if(!Config.m_FunctionFlags.PassThroughFlag)
-			SetMotorPwm(ALL_MOTORS,0);
+			SetMotorPwm(ALL_MOTORS,0,false);
 		return;
 	}
 
@@ -625,7 +555,7 @@ void CMotors::SetTravelDirection(Direction_t Direction )
 //=================================================================================
 // Set Motor PWM 0-5000 input -100 - 100 -value reverse
 //=================================================================================
-void CMotors::SetMotorPwm(eMotors_t Motor,float Value)
+void CMotors::SetMotorPwm(eMotors_t Motor,float Value,bool Passthrough)
 {
 	CMyMath Math;
 	uint16_t Pwm;
@@ -681,6 +611,11 @@ void CMotors::SetMotorPwm(eMotors_t Motor,float Value)
 	
 	}
 	CheckMotorSpeed();
+	if(Config.m_FunctionFlags.PassThroughFlag)
+	{
+		if(!Passthrough)
+			return;
+	}
 	if(!MotorDebug && Config.m_FunctionFlags.FunctionFlag_1)
 	{
 		FrontRightMotorPwm.SetValue( m_Motors.FrontRightMotor.PwmValue);      // set PWM driver with pwm value
@@ -846,10 +781,12 @@ void CMotors::PassthroughUpdate(UpdateMotors_t UpdateMotors)
 	{
 		if(UpdateMotors.Direction >0)			Direction = -1;
 		
-		SetMotorPwm(FRONT_RIGHT_MOTOR,UpdateMotors.FrontRightMotor*Direction);
-		SetMotorPwm(FRONT_LEFT_MOTOR,UpdateMotors.FrontLeftMotor*Direction);
-		SetMotorPwm(REAR_RIGHT_MOTOR,UpdateMotors.RearRightMotor*Direction);
-		SetMotorPwm(REAR_LEFT_MOTOR,UpdateMotors.RearLeftMotor*Direction);
+		SetMotorPwm(FRONT_RIGHT_MOTOR,UpdateMotors.FrontRightMotor*Direction,true);
+		SetMotorPwm(FRONT_LEFT_MOTOR,UpdateMotors.FrontLeftMotor*Direction,true);
+		SetMotorPwm(REAR_RIGHT_MOTOR,UpdateMotors.RearRightMotor*Direction,true);
+		SetMotorPwm(REAR_LEFT_MOTOR,UpdateMotors.RearLeftMotor*Direction,true);
+
+		
 	}
 }
 

@@ -185,7 +185,7 @@ public:
 	void SetThrottle(float throttle_in);
 	float GetScaledThrottle(float throttle) const;
 	void Update();
-	void SetMotorPwm(eMotors_t Motor,float Value);
+	void SetMotorPwm(eMotors_t Motor,float Value,bool Passthrough);
 	void DebugSetMotorPwm(uint8_t Motor,uint16_t Value);
 	void PassthroughUpdate(UpdateMotors_t UpdateMotors);
 	void AllMotorsStop();

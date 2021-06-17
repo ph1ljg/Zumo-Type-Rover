@@ -203,8 +203,8 @@ float CWheelEncoder::GetRate(Wheelsensor_t Wheel) const
 
 void CWheelEncoder::CalibrateRightWheelSensor()
 {
-	Motors.SetMotorPwm(FRONT_LEFT_MOTOR,20);
-	Motors.SetMotorPwm(FRONT_RIGHT_MOTOR,20);
+	Motors.SetMotorPwm(FRONT_LEFT_MOTOR,20,false);
+	Motors.SetMotorPwm(FRONT_RIGHT_MOTOR,20,false);
 	uint32_t Starttime = 0;
 	uint32_t DisplayTime = 0;
 	

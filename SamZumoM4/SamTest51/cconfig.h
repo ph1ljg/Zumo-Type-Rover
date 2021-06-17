@@ -347,7 +347,7 @@
 		SwitchValues_t SwitchSettings;
 		uint8_t LastFileNumber;
 		uint8_t WindSpeedScale;
-		uint16_t MotorTrims[4];
+		int16_t MotorTrims[4];
 		float MaxMotorPwm;
 	//float WheelRadius;
 		unsigned char  checksum;      // MUST BE ON LAST POSITION OF CONF STRUCTURE
