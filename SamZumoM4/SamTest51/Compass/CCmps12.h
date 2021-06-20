@@ -89,7 +89,7 @@ typedef struct __attribute__ ((packed))
 	bool Valid;
 }CmpsData_t;
 
-typedef struct __attribute__ ((packed))
+typedef struct 
 {
 	Vector3f  AccelRaw;
 	Vector3f GiroRaw;

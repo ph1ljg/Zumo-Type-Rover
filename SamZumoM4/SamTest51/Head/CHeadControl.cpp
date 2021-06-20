@@ -58,7 +58,6 @@ void CHeadControl::Update()
 	{
 		GetLidarRange(m_FrontDistance.Distance,m_FrontDistance.LidarStrength,m_Temperature);
 //Test();
-	LedDriver.SetRGB(32,32,0);
 		if(m_FrontDistance.Distance <Config.m_MainConfig.SafeFrontDistance)
 		{
 			CheckForScanTimeout();

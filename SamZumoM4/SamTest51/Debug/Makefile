@@ -40,7 +40,7 @@ SUBDIRS :=  \
 ../Math \
 ../Fpv \
 ../Ahrs \
-../Led \
+../Status \
 ../Gps \
 ../Attitude \
 ../Head \
@@ -104,9 +104,10 @@ C_SRCS +=  \
 ../Imu/CQuatToDcm.cpp \
 ../Imu/Imu.cpp \
 ../Interrupts.cpp \
-../Led/CLedDriver.cpp \
-../Led/CToshibaLedDriver.cpp \
-../Led/CWS2812.cpp \
+../Status/CLedDriver.cpp \
+../Status/CStatusControl.cpp \
+../Status/CToshibaLedDriver.cpp \
+../Status/CWS2812.cpp \
 ../main.cpp \
 ../Math/CMyMath.cpp \
 ../Math/Vector2.cpp \
@@ -137,12 +138,10 @@ C_SRCS +=  \
 ../Sensors/CTFmini.cpp \
 ../Sound/CTone.cpp \
 ../Sound/CPlayer.cpp \
-../Sound/CToneAlarm.cpp \
 ../Utils/CCirBuffer.cpp \
 ../Utils/CDebugDisplay.cpp \
 ../Utils/CFilters.cpp \
 ../Utils/CGuiFunctions.cpp \
-../Utils/CStatusControl.cpp \
 ../Utils/CObjectBuffer.cpp
 
 
@@ -199,9 +198,10 @@ Imu/CBN0055.o \
 Imu/CQuatToDcm.o \
 Imu/Imu.o \
 Interrupts.o \
-Led/CLedDriver.o \
-Led/CToshibaLedDriver.o \
-Led/CWS2812.o \
+Status/CLedDriver.o \
+Status/CStatusControl.o \
+Status/CToshibaLedDriver.o \
+Status/CWS2812.o \
 main.o \
 Math/CMyMath.o \
 Math/Vector2.o \
@@ -232,12 +232,10 @@ Sensors/CVL53OX.o \
 Sensors/CTFmini.o \
 Sound/CTone.o \
 Sound/CPlayer.o \
-Sound/CToneAlarm.o \
 Utils/CCirBuffer.o \
 Utils/CDebugDisplay.o \
 Utils/CFilters.o \
 Utils/CGuiFunctions.o \
-Utils/CStatusControl.o \
 Utils/CObjectBuffer.o
 
 OBJS_AS_ARGS +=  \
@@ -287,9 +285,10 @@ Imu/CBN0055.o \
 Imu/CQuatToDcm.o \
 Imu/Imu.o \
 Interrupts.o \
-Led/CLedDriver.o \
-Led/CToshibaLedDriver.o \
-Led/CWS2812.o \
+Status/CLedDriver.o \
+Status/CStatusControl.o \
+Status/CToshibaLedDriver.o \
+Status/CWS2812.o \
 main.o \
 Math/CMyMath.o \
 Math/Vector2.o \
@@ -320,12 +319,10 @@ Sensors/CVL53OX.o \
 Sensors/CTFmini.o \
 Sound/CTone.o \
 Sound/CPlayer.o \
-Sound/CToneAlarm.o \
 Utils/CCirBuffer.o \
 Utils/CDebugDisplay.o \
 Utils/CFilters.o \
 Utils/CGuiFunctions.o \
-Utils/CStatusControl.o \
 Utils/CObjectBuffer.o
 
 C_DEPS +=  \
@@ -375,9 +372,10 @@ Imu/CBN0055.d \
 Imu/CQuatToDcm.d \
 Imu/Imu.d \
 Interrupts.d \
-Led/CLedDriver.d \
-Led/CToshibaLedDriver.d \
-Led/CWS2812.d \
+Status/CLedDriver.d \
+Status/CStatusControl.d \
+Status/CToshibaLedDriver.d \
+Status/CWS2812.d \
 main.d \
 Math/CMyMath.d \
 Math/Vector2.d \
@@ -408,12 +406,10 @@ Sensors/CVL53OX.d \
 Sensors/CTFmini.d \
 Sound/CTone.d \
 Sound/CPlayer.d \
-Sound/CToneAlarm.d \
 Utils/CCirBuffer.d \
 Utils/CDebugDisplay.d \
 Utils/CFilters.d \
 Utils/CGuiFunctions.d \
-Utils/CStatusControl.d \
 Utils/CObjectBuffer.d
 
 C_DEPS_AS_ARGS +=  \
@@ -463,9 +459,10 @@ Imu/CBN0055.d \
 Imu/CQuatToDcm.d \
 Imu/Imu.d \
 Interrupts.d \
-Led/CLedDriver.d \
-Led/CToshibaLedDriver.d \
-Led/CWS2812.d \
+Status/CLedDriver.d \
+Status/CStatusControl.d \
+Status/CToshibaLedDriver.d \
+Status/CWS2812.d \
 main.d \
 Math/CMyMath.d \
 Math/Vector2.d \
@@ -496,12 +493,10 @@ Sensors/CVL53OX.d \
 Sensors/CTFmini.d \
 Sound/CTone.d \
 Sound/CPlayer.d \
-Sound/CToneAlarm.d \
 Utils/CCirBuffer.d \
 Utils/CDebugDisplay.d \
 Utils/CFilters.d \
 Utils/CGuiFunctions.d \
-Utils/CStatusControl.d \
 Utils/CObjectBuffer.d
 
 OUTPUT_FILE_PATH +=SamZumoM4.elf
@@ -524,182 +519,182 @@ LINKER_SCRIPT_DEP+=  \
 Ahrs/CAhrs.o: ../Ahrs/CAhrs.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Attitude/CAttitudeControl.o: ../Attitude/CAttitudeControl.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Avoidance/CBendyRuler.o: ../Avoidance/CBendyRuler.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Avoidance/CFence.o: ../Avoidance/CFence.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Avoidance/CObjAvoidDbase.o: ../Avoidance/CObjAvoidDbase.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Avoidance/CAvoidance.o: ../Avoidance/CAvoidance.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Avoidance/CProximity.o: ../Avoidance/CProximity.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 ./CAlarm.o: .././CAlarm.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 ./CBuzzer.o: .././CBuzzer.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 ./cconfig.o: .././cconfig.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Compass/CCmps12.o: ../Compass/CCmps12.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Compass/CCompass.o: ../Compass/CCompass.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Core/CAnalog.o: ../Core/CAnalog.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Core/CCore.o: ../Core/CCore.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Core/CI2c.o: ../Core/CI2c.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Core/CPinPeripheral.o: ../Core/CPinPeripheral.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Core/Cpwm.o: ../Core/Cpwm.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Core/CReset.o: ../Core/CReset.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Core/CSercom.o: ../Core/CSercom.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Core/CSetInterupts.o: ../Core/CSetInterupts.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Core/CSoftwareSerial.o: ../Core/CSoftwareSerial.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Core/CSpi.o: ../Core/CSpi.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Core/CTimers.o: ../Core/CTimers.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Core/CUart.o: ../Core/CUart.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 ./CTaskManager.o: .././CTaskManager.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 ./CZumo.o: .././CZumo.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
@@ -734,392 +729,385 @@ Device_Startup/system_samd51.o: ../Device_Startup/system_samd51.c
 Filters/CHarmonicNotchFilter.o: ../Filters/CHarmonicNotchFilter.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Filters/CLowPassFilter.o: ../Filters/CLowPassFilter.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Filters/CLowPassFilter2p.o: ../Filters/CLowPassFilter2p.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Filters/CNotchFilter.o: ../Filters/CNotchFilter.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Fpv/CMax7456.o: ../Fpv/CMax7456.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Fpv/COsd.o: ../Fpv/COsd.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Fpv/CTrampProtocol.o: ../Fpv/CTrampProtocol.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Gps/CGps.o: ../Gps/CGps.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Gps/CUblox.o: ../Gps/CUblox.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Head/CHeadControl.o: ../Head/CHeadControl.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Head/CHuskyMain.o: ../Head/CHuskyMain.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Head/CHuskyProtocol.o: ../Head/CHuskyProtocol.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Imu/CBN0055.o: ../Imu/CBN0055.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Imu/CQuatToDcm.o: ../Imu/CQuatToDcm.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Imu/Imu.o: ../Imu/Imu.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 ./Interrupts.o: .././Interrupts.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
-Led/CLedDriver.o: ../Led/CLedDriver.cpp
+Status/CLedDriver.o: ../Status/CLedDriver.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
-Led/CToshibaLedDriver.o: ../Led/CToshibaLedDriver.cpp
+Status/CStatusControl.o: ../Status/CStatusControl.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
-Led/CWS2812.o: ../Led/CWS2812.cpp
+Status/CToshibaLedDriver.o: ../Status/CToshibaLedDriver.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+Status/CWS2812.o: ../Status/CWS2812.cpp
+	@echo Building file: $<
+	@echo Invoking: ARM/GNU C Compiler : 6.3.1
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 ./main.o: .././main.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Math/CMyMath.o: ../Math/CMyMath.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Math/Vector2.o: ../Math/Vector2.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Math/matrix3.o: ../Math/matrix3.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Math/vector3.o: ../Math/vector3.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Motors/CMotors.o: ../Motors/CMotors.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Motors/CPCF8574.o: ../Motors/CPCF8574.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Motors/CServo.o: ../Motors/CServo.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Motors/CSteering.o: ../Motors/CSteering.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Motors/CWheelEncoder.o: ../Motors/CWheelEncoder.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Navigation/CL1Control.o: ../Navigation/CL1Control.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Navigation/CNavigation.o: ../Navigation/CNavigation.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Navigation/CNavigationFunctions.o: ../Navigation/CNavigationFunctions.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Navigation/CPathPlanner.o: ../Navigation/CPathPlanner.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Pid/Cid3.o: ../Pid/Cid3.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Pid/CPidSimp.o: ../Pid/CPidSimp.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Pid/CPid_P.o: ../Pid/CPid_P.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Pid/CPid_PID.o: ../Pid/CPid_PID.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 QSpiFlash/CQSpi.o: ../QSpiFlash/CQSpi.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 QSpiFlash/CQSpiFlash.o: ../QSpiFlash/CQSpiFlash.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Receiver/CFrskyTelemetry.o: ../Receiver/CFrskyTelemetry.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Receiver/CRadioControl.o: ../Receiver/CRadioControl.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Receiver/CSbusDecoder.o: ../Receiver/CSbusDecoder.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Sensors/CSensors.o: ../Sensors/CSensors.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Sensors/CTFMiniPlus.o: ../Sensors/CTFMiniPlus.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Sensors/CVL53L1X.o: ../Sensors/CVL53L1X.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Sensors/CVL53OX.o: ../Sensors/CVL53OX.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Sensors/CTFmini.o: ../Sensors/CTFmini.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Sound/CTone.o: ../Sound/CTone.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Sound/CPlayer.o: ../Sound/CPlayer.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-Sound/CToneAlarm.o: ../Sound/CToneAlarm.cpp
-	@echo Building file: $<
-	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Utils/CCirBuffer.o: ../Utils/CCirBuffer.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Utils/CDebugDisplay.o: ../Utils/CDebugDisplay.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Utils/CFilters.o: ../Utils/CFilters.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Utils/CGuiFunctions.o: ../Utils/CGuiFunctions.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-Utils/CStatusControl.o: ../Utils/CStatusControl.cpp
-	@echo Building file: $<
-	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Utils/CObjectBuffer.o: ../Utils/CObjectBuffer.cpp
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I"../Led" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-g++.exe$(QUOTE) -mthumb -D__SAMD51J19A__ -DDEBUG -D__FPU_PRESENT=1 -DARM_MATH_CM4  -I"../Device_Startup" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"../Ahrs" -I"../Core" -I"../Fpv" -I"../Math" -I"../Motors" -I"../Navigation" -I"../Pid" -I"../Receiver" -I"../Sensors" -I"../Servo" -I"../Utils" -I".." -I"../QSpiFlash" -I"../Gps" -I"../Attitude" -I"../Head" -I"../Avoidance" -I"../Imu" -I"../Compass" -I"../Filters" -I"../Sound" -I"../Status"  -O0 -ffunction-sections -fno-rtti -fno-exceptions -mlong-calls -g3 -Wall -Wextra -mcpu=cortex-m4 -c -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 

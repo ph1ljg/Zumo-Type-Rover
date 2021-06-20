@@ -9,7 +9,16 @@
 #ifndef __PCF8574_H__
 #define __PCF8574_H__
 
+
+#ifdef TWO_WHEEL_ZUMO
 #define PCF8574_ADDDRESS  0x20
+#endif
+
+#ifdef FOUR_WHEEL_ZUMO
+#define PCF8724_ADDDRESS  0x27
+#endif
+
+
 
 class CPCF8574
 {

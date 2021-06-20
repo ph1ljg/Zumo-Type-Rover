@@ -97,10 +97,9 @@
 #define GUIP_CALIBRATE_STICKS_SAVE	224	  //in message
 #define GUIP_DELETE_LOG_FILE			225	  //in message	
 #define GUIP_SET_MOTOR_TRIM			226	  //in message	
-#define GUIP_GUI_START						227   //in message          no param
-#define GUIP_GUI_STOP						228   //in message          no param
-#define GUIP_GUI_RUNNING_FLAGS		229   //in message          no param
-
+#define GUIP_SAVE_FUNCTION_FLAGS	227   //in message          no param
+//#define GUIP_GUI_STOP						228   //in message          no param
+//#define GUIP_GUI_RUNNING_FLAGS		229   //in message          no param
 #define GUIP_EEPROM_WRITE				250   //in message          no param
 
 #define WP_FLAG_OK   0x00				//WP OK

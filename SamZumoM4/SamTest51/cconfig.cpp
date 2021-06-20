@@ -189,7 +189,7 @@ bool CConfig::WriteFunctionFlagsConfig()
 	m_FunctionFlags.checksum = CalculateConfigChecksum((unsigned uint8_t*)&m_FunctionFlags, sizeof(FunctionFlags_t)-1);
 	QSpiFlash.eraseSector (3);
 	QSpiFlash.writeBuffer(FUNCTION_ADDRESS,(uint8_t*) &m_FunctionFlags, sizeof(FunctionFlags_t));
-	return(ReadRcConfig());
+	return(ReadFunctionFlagsConfig());
 }
 
 
@@ -403,8 +403,8 @@ bool CConfig::LoadDefaultConfig(bool WriteToFlash)
 
 bool CConfig::LoadDefaultFunctionFlags()
 {
-	m_FunctionFlags.FunctionFlag_1 = false;
-	m_FunctionFlags.FunctionFlag_2 = false;
+	m_FunctionFlags.MotorEnable = false;
+	m_FunctionFlags.SoundEnable = false;
 	m_FunctionFlags.FunctionFlag_3 = false;
 	m_FunctionFlags.FunctionFlag_4 = false;
 	m_FunctionFlags.FunctionFlag_5 = false;

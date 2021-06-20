@@ -136,9 +136,6 @@ void CImu::InitGyro()
     float best_diff;
     bool converged;
  
-  // flash leds to tell user to keep the IMU still
-	StatusControl.SetLedSequence(StatusControl.SequenceGyroCal);   
-  
   
     // remove existing gyro offsets
 	NewGyroOffset.zero();
@@ -214,7 +211,6 @@ void CImu::InitGyro()
 			}
 			LastAverage = gyro_avg;
 		} 
-		StatusControl.UpdateLed();
 	}
 
    //  waited long enough - use the best pair  found so far

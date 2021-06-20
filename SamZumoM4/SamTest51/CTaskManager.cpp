@@ -212,11 +212,11 @@ void CTaskManager::Init(void)
 
 
 
-	strncpy((char*)m_Tasks[TASK_UPDATE_SOUND].Lable,"Sound",5);
-	m_Tasks[TASK_UPDATE_SOUND].TaskId					= TASK_UPDATE_SOUND;
-	m_Tasks[TASK_UPDATE_SOUND].DesiredPeriod			= TASK_PERIOD_MS(20);
-	m_Tasks[TASK_UPDATE_SOUND].TaskPriority				= TASK_PRIORITY_MEDIUM;
-	m_Tasks[TASK_UPDATE_SOUND].IsEventDriven			= false;
+	strncpy((char*)m_Tasks[TASK_UPDATE_STATUS].Lable,"Sound",5);
+	m_Tasks[TASK_UPDATE_STATUS].TaskId					= TASK_UPDATE_STATUS;
+	m_Tasks[TASK_UPDATE_STATUS].DesiredPeriod			= TASK_PERIOD_MS(20);
+	m_Tasks[TASK_UPDATE_STATUS].TaskPriority				= TASK_PRIORITY_MEDIUM;
+	m_Tasks[TASK_UPDATE_STATUS].IsEventDriven			= false;
 
 
 
@@ -593,8 +593,8 @@ void CTaskManager::DoTasks(TaskId_t Task,uint32_t Time)
 	case TASK_IMU_UPDATE:
 		Imu.Update(Time);
 		break;	
-	case TASK_UPDATE_SOUND:
-			ToneAlarm.Update();
+	case TASK_UPDATE_STATUS:
+			StatusControl.Update();
 	default:
 		break;
 	}

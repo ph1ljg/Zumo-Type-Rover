@@ -9,9 +9,12 @@
 #ifndef INCLUDES_H_
 #define INCLUDES_H_
 
-//#define PAUL_ZUMO
-#define  ZUMO
+//======================= MODEL= ===============================
+//#define FOUR_WHEEL_ZUMO
+#define TWO_WHEEL_ZUMO
 //#define  LARGE_ROVER
+//============================================================
+
 
 #include "sam.h"
 #include "samd51.h"
@@ -113,7 +116,6 @@
 #include "CLedDriver.h"
 #include "CSensors.h"
 #include "CTone.h"
-#include "CToneAlarm.h"
 
 
 extern CPinPeripheral PinPeripheral;
@@ -174,5 +176,4 @@ extern CAttitudeControl AttitudeControl;
 extern CCompass Compass;
 extern CSensors Sensors;
 extern CTone Tone;
-extern CToneAlarm ToneAlarm;
 #endif /* INCLUDES_H_ */

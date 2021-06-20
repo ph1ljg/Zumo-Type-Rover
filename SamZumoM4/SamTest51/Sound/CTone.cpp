@@ -122,7 +122,7 @@ void CTone::PlayTone (EPortType Port, uint8_t outputPin, uint32_t frequency, uin
 	toggleCount = (duration > 0 ? frequency * duration * 2 / 1000UL : -1);
 
 	resetTC(TONE_TC);
-
+	TONE_TC->COUNT16.DBGCTRL.bit.DBGRUN = true;
 	uint16_t tmpReg = 0;
 	tmpReg |= TC_CTRLA_MODE_COUNT16;  // Set Timer counter Mode to 16 bits
 	

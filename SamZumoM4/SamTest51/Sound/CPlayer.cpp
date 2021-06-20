@@ -9,6 +9,8 @@
 #include "ctype.h"
 #include "CPlayer.h"
 
+uint32_t PlayTime;
+
 // default constructor
 CPlayer::CPlayer()
 {
@@ -23,93 +25,96 @@ CPlayer::~CPlayer()
 
 void CPlayer::Update()
 {
+	PlayTime = Core.micros()-m_NoteStart_us;
 	// Check if note is over
-	if (_playing && Core.micros()-_note_start_us > _note_duration_us) 
+	if (m_IsPlaying && Core.micros()-m_NoteStart_us > m_NoteDuration_us) 
 	{
-		next_action();
+		NextAction();
 	}
 }
 
-void CPlayer::prepare_to_play_string(const char* string)
+
+void CPlayer::Play(const char* string)
 {
-	stop();
-
-	_string = string;
-	_next = 0;
-	_tempo = 120;
-	_default_note_length = 4;
-	_note_mode = MODE_NORMAL;
-	_octave = 4;
-	_volume = 255;
-	_silence_duration = 0;
-	_repeat = false;
-
-	_playing = true;
-	_note_duration_us = 0;
+	PrepareToPlayString(string);
+	NextAction();
 }
 
-void CPlayer::play(const char* string)
+
+
+void CPlayer::PrepareToPlayString(const char* SequenceStr)
 {
-	prepare_to_play_string(string);
-	next_action();
+	Stop();
+	m_SequenceStr				= SequenceStr;
+	m_Next							= 0;
+	m_Tempo						= 120;
+	m_DefaultNoteLength	= 4;
+	m_eNoteMode				= MODE_NORMAL;
+	m_Octave						= 4;
+	m_Volume						= 255;
+	m_SilenceDuration			= 0;
+	m_Repeat						= false;
+	m_NoteDuration_us = 0;
+	m_IsPlaying = true;
 }
 
-void CPlayer::stop()
+
+void CPlayer::Stop()
 {
-	_playing = false;
+	m_IsPlaying = false;
 	Tone.noTone(5);
 }
 
-void CPlayer::start_silence(float duration)
+void CPlayer::StartSilence(float duration)
 {
-	_note_start_us = Core.micros();
-	_note_duration_us = duration*1e6;
+	m_NoteStart_us = Core.micros();
+	m_NoteDuration_us = duration*1e6;
 	Tone.noTone(5);
 }
 
-void CPlayer::start_note(float duration, float frequency, float volume)
+void CPlayer::StartNote(float duration, float frequency, float volume)
 {
-	_note_start_us = Core.micros();
-	_note_duration_us = duration*1e6;
-	Tone.PlayTone(PORTA,5,frequency ,_note_duration_us/1000U);
+	m_NoteStart_us = Core.micros();
+	m_NoteDuration_us = duration*1e6;
+	Tone.PlayTone(PORTA,5,frequency ,m_NoteDuration_us/1000U);
 }
 
 
-char CPlayer::next_char()
+char CPlayer::NextChar()
 {
-	while (_string[_next] != '\0' && isspace(_string[_next])) 
+	while (m_SequenceStr[m_Next] != '\0' && isspace(m_SequenceStr[m_Next])) 
 	{
-		_next++;
+		m_Next++;
 	}
 
-	return toupper(_string[_next]);
+	return toupper(m_SequenceStr[m_Next]);
 }
 
-uint8_t CPlayer::next_number()
+uint8_t CPlayer::NextNumber()
 {
 	uint8_t ret = 0;
-	while (isdigit(next_char())) 
+	while (isdigit(NextChar())) 
 	{
-		ret = (ret*10) + (next_char() - '0');
-		_next++;
+		ret = (ret*10) + (NextChar() - '0');
+		m_Next++;
 	}
 	return ret;
 }
 
-size_t CPlayer::next_dots()
+size_t CPlayer::NextDots()
 {
 	size_t ret = 0;
-	while (next_char() == '.') 
+	while (NextChar() == '.') 
 	{
 		ret++;
-		_next++;
+		m_Next++;
 	}
 	return ret;
 }
 
-float CPlayer::rest_duration(uint32_t rest_length, uint8_t dots)
+float CPlayer::RestDuration(uint32_t rest_length, uint8_t dots)
 {
-	float whole_note_period = 240.0f / _tempo;
+	float whole_note_period = 240.0f / m_Tempo;
 	if (rest_length == 0) 
 	{
 		rest_length = 1;
@@ -127,12 +132,12 @@ float CPlayer::rest_duration(uint32_t rest_length, uint8_t dots)
 	return rest_period;
 }
 
-void CPlayer::next_action()
+void CPlayer::NextAction()
 {
-	if (_silence_duration > 0) 
+	if (m_SilenceDuration > 0) 
 	{
-		start_silence(_silence_duration);
-		_silence_duration = 0;
+		StartSilence(m_SilenceDuration);
+		m_SilenceDuration = 0;
 		return;
 	}
 
@@ -141,108 +146,108 @@ void CPlayer::next_action()
 
 	while (note == 0) 
 	{
-		char c = next_char();
+		char c = NextChar();
 		if (c == '\0') 
 		{
-			if (_repeat) 
+			if (m_Repeat) 
 			{
 				// don't "play" here, as we may have been called from there, and it turns out infinite recursion on
 				// invalid strings is suboptimal.  The next call to update() will push things out as appropriate.
-				prepare_to_play_string(_string);
+				PrepareToPlayString(m_SequenceStr);
 			} 
 			else 
 			{
-				stop();
+				Stop();
 			}
 			return;
 		}
 
-		_next++;
+		m_Next++;
 		switch (c) 
 		{
 		case 'V': 
-				_volume = next_number();
+				m_Volume = NextNumber();
 				break;
 		case 'L': 
-				_default_note_length = next_number();
-				if (_default_note_length == 0) 
+				m_DefaultNoteLength = NextNumber();
+				if (m_DefaultNoteLength == 0) 
 				{
-					stop();
+					Stop();
 					return;
 				}
 				break;
 		case 'O':
-			_octave = next_number();
-			if (_octave > 6) 
-				_octave = 6;
+			m_Octave = NextNumber();
+			if (m_Octave > 6) 
+				m_Octave = 6;
 			break;
 		case '<':
-			if (_octave > 0) 
-				_octave--;
+			if (m_Octave > 0) 
+				m_Octave--;
 			break;
 		case '>':
-			if (_octave < 6) 
-				_octave++;
+			if (m_Octave < 6) 
+				m_Octave++;
 			break;
 		case 'M':
-			c = next_char();
+			c = NextChar();
 			if (c == '\0') 
 			{
-				stop();
+				Stop();
 				return;
 			}
-			_next++;
+			m_Next++;
 			switch (c) 
 			{
 			case 'N':
-				_note_mode = MODE_NORMAL;
+				m_eNoteMode = MODE_NORMAL;
 				break;
 			case 'L':
-				_note_mode = MODE_LEGATO;
+				m_eNoteMode = MODE_LEGATO;
 				break;
 			case 'S':
-				_note_mode = MODE_STACCATO;
+				m_eNoteMode = MODE_STACCATO;
 				break;
 			case 'F':
-				_repeat = false;
+				m_Repeat = false;
 				break;
 			case 'B':
-				_repeat = true;
+				m_Repeat = true;
 				break;
 			default:
-				stop();
+				Stop();
 				return;
 			}
 			break;
 		case 'R':
 		case 'P': 
 			{
-				uint8_t num = next_number();
-				uint8_t dots = next_dots();
-				start_silence(rest_duration(num, dots));
+				uint8_t num = NextNumber();
+				uint8_t dots = NextDots();
+				StartSilence(RestDuration(num, dots));
 				return;
 			}
 		case 'T':
-			_tempo = next_number();
-			if (_tempo < 32) 
+			m_Tempo = NextNumber();
+			if (m_Tempo < 32) 
 			{
-				stop();
+				Stop();
 				return;
 			}
 			break;
 		case 'N':
-			note = next_number();
-			note_length = _default_note_length;
+			note = NextNumber();
+			note_length = m_DefaultNoteLength;
 			if (note > 84) 
 			{
-				stop();
+				Stop();
 				return;
 			}
 			if (note == 0) 
 			{
-				uint8_t num = next_number();
-				uint8_t dots = next_dots();
-				start_silence(rest_duration(num, dots));
+				uint8_t num = NextNumber();
+				uint8_t dots = NextDots();
+				StartSilence(RestDuration(num, dots));
 				return;
 			}
 			break;
@@ -255,9 +260,9 @@ void CPlayer::next_action()
 		case 'G': 
 			{
 				static const uint8_t note_tab[] = {9,11,0,2,4,5,7};
-				note = note_tab[c-'A'] + (_octave*12) + 1;
+				note = note_tab[c-'A'] + (m_Octave*12) + 1;
 
-				c = next_char();
+				c = NextChar();
 
 				switch (c) 
 				{
@@ -265,52 +270,52 @@ void CPlayer::next_action()
 				case '+':
 					if (note < 84) 
 						note++;
-					_next++;
+					m_Next++;
 					break;
 				case '-':
 					if (note > 1) 
 						note--;
-					_next++;
+					m_Next++;
 					break;
 				default:
 					break;
 				}
-				note_length = next_number();
+				note_length = NextNumber();
 				if (note_length == 0) 
-					note_length = _default_note_length;
+					note_length = m_DefaultNoteLength;
 				break;
 			}
 			default:
-			stop();
+			Stop();
 			return;
 		}
 	}
 
 	// Avoid division by zero
-	if (_tempo == 0 || note_length == 0) 
+	if (m_Tempo == 0 || note_length == 0) 
 	{
-		stop();
+		Stop();
 		return;
 	}
 
-	float note_period = 240.0f / (float)_tempo / (float)note_length;
+	float note_period = 240.0f / (float)m_Tempo / (float)note_length;
 
-	switch (_note_mode) 
+	switch (m_eNoteMode) 
 	{
 	case MODE_NORMAL:
-		_silence_duration = note_period/8;
+		m_SilenceDuration = note_period/8;
 		break;
 	case MODE_STACCATO:
-		_silence_duration = note_period/4;
+		m_SilenceDuration = note_period/4;
 		break;
 	case MODE_LEGATO:
-		_silence_duration = 0;
+		m_SilenceDuration = 0;
 		break;
 	}
-	note_period -= _silence_duration;
+	note_period -= m_SilenceDuration;
 
 	float dot_extension = note_period/2;
-	uint8_t dots = next_dots();
+	uint8_t dots = NextDots();
 	while (dots--) 
 	{
 		note_period += dot_extension;
@@ -318,11 +323,11 @@ void CPlayer::next_action()
 	}
 	CMyMath Math;
 	float note_frequency = 880.0f * expf(logf(2.0f) * ((int)note - 46) / 12.0f);
-	float note_volume = _volume/255.0f;
+	float note_volume = m_Volume/255.0f;
 	note_volume *= 100 * 0.01;
 	note_volume = Math.constrain_float(note_volume, 0, 1);
 
 	note_frequency = Math.constrain_float(note_frequency, 10, 22000);
 
-	start_note(note_period, note_frequency, note_volume);
+	StartNote(note_period, note_frequency, note_volume);
 }

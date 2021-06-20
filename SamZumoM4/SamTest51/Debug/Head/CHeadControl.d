@@ -161,7 +161,7 @@ Head/CHeadControl.d Head/CHeadControl.o: ../Head/CHeadControl.cpp \
  ../Pid/CPid_P.h ../Pid/CPid_PID.h ../Core/CPinPeripheral.h \
  ../Core/Defines.h ../Core/CSpi.h ../Core/CI2c.h ../Motors/CServo.h \
  ../Core/CSoftwareSerial.h ../Utils/CCirBuffer.h ../Utils/CDebugDisplay.h \
- ../Led/CWS2812.h ../cconfig.h ../Math/cmymath.h ../Core/Cpwm.h \
+ ../Status/CWS2812.h ../cconfig.h ../Math/cmymath.h ../Core/Cpwm.h \
  ../Core/CAnalog.h ../Motors/CPCF8574.h ../Utils/CGuiFunctions.h \
  ../Motors/CMotors.h ../QSpiFlash/CQSpi.h ../QSpiFlash/CQSpiFlash.h \
  ../QSpiFlash/QSpiFlashDevices.h ../QSpiFlash/QSpiFlashDevices.h \
@@ -173,7 +173,7 @@ Head/CHeadControl.d Head/CHeadControl.o: ../Head/CHeadControl.cpp \
  ../Compass/CCmps12.h ../Gps/CUblox.h ../Gps/UbloxStructures.h \
  ../Gps/CGps.h ../includes.h ../Imu/CBN0055.h ../Math/quaternion.h \
  ../Math/matrix.h ../Math/vector.h ../Fpv/COsd.h ../Fpv/CMax7456.h \
- ../Utils/CStatusControl.h ../Sensors/CTFMiniPlus.h \
+ ../Status/CStatusControl.h ../Sensors/CTFMiniPlus.h \
  ../Fpv/CTrampProtocol.h ../Sensors/CVL53OX.h ../Pid/CPidSimp.h \
  ../CBuzzer.h ../Motors/CWheelEncoder.h ../Sensors/CVL53L1X.h \
  ../Avoidance/CObjAvoidDbase.h ../Avoidance/CFence.h \
@@ -182,9 +182,8 @@ Head/CHeadControl.d Head/CHeadControl.o: ../Head/CHeadControl.cpp \
  ../Head/CHuskyProtocol.h ../Head/CHuskyMain.h ../Imu/Imu.h \
  ../Filters/CLowPassFilter2p.h ../Filters/CLowPassFilter.h \
  ../Filters/CNotchFilter.h ../Attitude/CAttitudeControl.h \
- ../Avoidance/CProximity.h ../Compass/CCompass.h ../Led/CLedDriver.h \
- ../Sound/CTone.h ../Sound/CToneAlarm.h ../Head/CHeadControl.h \
- ../Led/CToshibaLedDriver.h
+ ../Avoidance/CProximity.h ../Compass/CCompass.h ../Status/CLedDriver.h \
+ ../Sound/CTone.h ../Head/CHeadControl.h ../Status/CToshibaLedDriver.h
 
 ../Includes.h:
 
@@ -544,7 +543,7 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-no
 
 ../Utils/CDebugDisplay.h:
 
-../Led/CWS2812.h:
+../Status/CWS2812.h:
 
 ../cconfig.h:
 
@@ -616,7 +615,7 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-no
 
 ../Fpv/CMax7456.h:
 
-../Utils/CStatusControl.h:
+../Status/CStatusControl.h:
 
 ../Sensors/CTFMiniPlus.h:
 
@@ -662,12 +661,10 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-no
 
 ../Compass/CCompass.h:
 
-../Led/CLedDriver.h:
+../Status/CLedDriver.h:
 
 ../Sound/CTone.h:
 
-../Sound/CToneAlarm.h:
-
 ../Head/CHeadControl.h:
 
-../Led/CToshibaLedDriver.h:
+../Status/CToshibaLedDriver.h:

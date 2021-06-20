@@ -6,10 +6,8 @@
 */
 
 #include "Includes.h"
-#include "CToneAlarm.h"
 CMotors MotorControl;
 CAnalog Analog;
-CToneAlarm ToneAlarm;
 
 
 // default constructor
@@ -65,30 +63,9 @@ void CZumo::Init()
 	Navigation.Init(false);
 	TaskManager.Init();
 	TaskManager.EnableTask(TASK_START_TASKS,true);
-// 	HorizServo.WriteMicroseconds(1000);
-// 	VertServo.WriteMicroseconds(1000);
-// 	Core.delay(2000);
-// 	HorizServo.WriteMicroseconds(1900);
-// 	VertServo.WriteMicroseconds(1900);
-// 	Core.delay(2000);
-// 	Core.delay(2000);
 	Config.m_RunningFlags.AVOIDANCE_ACTIVE = true;
 //	Config.m_RunningFlags.ARMED = true;       // Removed PSB 22/05/21
-	ToneAlarm.init();
-// 	while(1)
-// 	{
-//  		ToneAlarm.Update();
-// 		 Core.delay(20);
-// 	}
-
-// 	Tone.PlayTone(PORTA,5,1000,1000);
-// 	Core.delay(3000);
-// 	Tone.PlayTone(PORTA,5,2000,1000);
-// 	Core.delay(3000);
-// 	Tone.PlayTone(PORTA,5,3000,1000);
-// 	Core.delay(3000);
-// 	Tone.PlayTone(PORTA,5,4000,1000);
-// 	Core.delay(3000);
+	StatusControl.Startup();
 }
 
 // allow for modules to boot up
@@ -177,7 +154,7 @@ void CZumo::StartTasks()
 		TaskManager.EnableTask(TASK_IMU_UPDATE,true);
 		break;
 	case 20:
-		TaskManager.EnableTask(TASK_UPDATE_SOUND,true);
+		TaskManager.EnableTask(TASK_UPDATE_STATUS,true);
 		break;
 	case 21:
 		Osd.m_AllowUpdate = true;

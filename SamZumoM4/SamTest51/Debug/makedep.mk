@@ -94,11 +94,13 @@ Imu\Imu.cpp
 
 Interrupts.cpp
 
-Led\CLedDriver.cpp
+Status\CLedDriver.cpp
 
-Led\CToshibaLedDriver.cpp
+Status\CStatusControl.cpp
 
-Led\CWS2812.cpp
+Status\CToshibaLedDriver.cpp
+
+Status\CWS2812.cpp
 
 main.cpp
 
@@ -160,8 +162,6 @@ Sound\CTone.cpp
 
 Sound\CPlayer.cpp
 
-Sound\CToneAlarm.cpp
-
 Utils\CCirBuffer.cpp
 
 Utils\CDebugDisplay.cpp
@@ -169,8 +169,6 @@ Utils\CDebugDisplay.cpp
 Utils\CFilters.cpp
 
 Utils\CGuiFunctions.cpp
-
-Utils\CStatusControl.cpp
 
 Utils\CObjectBuffer.cpp
 

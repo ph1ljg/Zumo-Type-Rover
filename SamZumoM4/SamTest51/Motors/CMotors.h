@@ -52,7 +52,7 @@ White: Motor power - negative (change can control motor forward and reverse)
 #define MOTOR_RC_MID_PWM MOTOR_RC_MAX_PWM/2
 
 
-#ifdef PAUL_ZUMO
+#ifdef FOUR_WHEEL_ZUMO
 	#define FRONT_RIGHT_FORWARD	false
 	#define FRONT_RIGHT_REVERSE	true
 	#define FRONT_LEFT_FORWARD	true
@@ -62,7 +62,7 @@ White: Motor power - negative (change can control motor forward and reverse)
 	#define REAR_LEFT_FORWARD		true
 	#define REAR_LEFT_REVERSE		false
 #endif
-#ifdef ZUMO
+#ifdef TWO_WHEEL_ZUMO
 	#define FRONT_RIGHT_FORWARD	false
 	#define FRONT_RIGHT_REVERSE	true
 	#define FRONT_LEFT_FORWARD	true

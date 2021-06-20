@@ -616,7 +616,7 @@ void CMotors::SetMotorPwm(eMotors_t Motor,float Value,bool Passthrough)
 		if(!Passthrough)
 			return;
 	}
-	if(!MotorDebug && Config.m_FunctionFlags.FunctionFlag_1)
+	if(!MotorDebug && Config.m_FunctionFlags.MotorEnable)
 	{
 		FrontRightMotorPwm.SetValue( m_Motors.FrontRightMotor.PwmValue);      // set PWM driver with pwm value
 		FrontLeftMotorPwm.SetValue(m_Motors.FrontLeftMotor.PwmValue);

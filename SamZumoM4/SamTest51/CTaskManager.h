@@ -77,7 +77,7 @@ typedef enum
 	TASK_FRONT_RANGE,
 	TASK_WHEEL_ENCODERS,
 	TASK_START_TASKS,
-	TASK_UPDATE_SOUND,
+	TASK_UPDATE_STATUS,
 	TASK_COUNT,					// Task Count must be at end of tasks
 	NOT_IN_QUE
 

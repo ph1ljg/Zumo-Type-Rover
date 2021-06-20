@@ -14,7 +14,6 @@
 
 
 
-
 	#define MAIN_CONFIG_ADDRESS	0x00
 	#define NAVIGATION_ADDRESS	0x1000
 	#define RC_CONFIG_ADDRESS	0x2000
@@ -469,8 +468,8 @@
 
 	typedef struct  __attribute__((__packed__ ))
 	{
-		unsigned char FunctionFlag_1	:1;
-		unsigned char FunctionFlag_2	:1;
+		unsigned char MotorEnable	:1;
+		unsigned char SoundEnable	:1;
 		unsigned char FunctionFlag_3	:1;
 		unsigned char FunctionFlag_4	:1;
 		unsigned char FunctionFlag_5	:1;

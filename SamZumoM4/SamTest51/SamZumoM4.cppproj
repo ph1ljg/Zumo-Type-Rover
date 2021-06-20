@@ -172,7 +172,6 @@
             <Value>../Sensors</Value>
             <Value>../Servo</Value>
             <Value>../Utils</Value>
-            <Value>../Led</Value>
             <Value>..</Value>
             <Value>../QSpiFlash</Value>
             <Value>../Gps</Value>
@@ -183,6 +182,7 @@
             <Value>../Compass</Value>
             <Value>../Filters</Value>
             <Value>../Sound</Value>
+            <Value>../Status</Value>
           </ListValues>
         </armgcccpp.compiler.directories.IncludePaths>
         <armgcccpp.compiler.optimization.PrepareFunctionsForGarbageCollection>True</armgcccpp.compiler.optimization.PrepareFunctionsForGarbageCollection>
@@ -503,22 +503,28 @@
     <Compile Include="Interrupts.cpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Led\CLedDriver.cpp">
+    <Compile Include="Status\CLedDriver.cpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Led\CLedDriver.h">
+    <Compile Include="Status\CLedDriver.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Led\CToshibaLedDriver.cpp">
+    <Compile Include="Status\CStatusControl.cpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Led\CToshibaLedDriver.h">
+    <Compile Include="Status\CStatusControl.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Led\CWS2812.cpp">
+    <Compile Include="Status\CToshibaLedDriver.cpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Led\CWS2812.h">
+    <Compile Include="Status\CToshibaLedDriver.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Status\CWS2812.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Status\CWS2812.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.cpp">
@@ -719,12 +725,6 @@
     <Compile Include="Sound\CPlayer.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Sound\CToneAlarm.cpp">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Sound\CToneAlarm.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="updates.h">
       <SubType>compile</SubType>
     </Compile>
@@ -752,12 +752,6 @@
     <Compile Include="Utils\CGuiFunctions.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Utils\CStatusControl.cpp">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Utils\CStatusControl.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="Utils\CObjectBuffer.cpp">
       <SubType>compile</SubType>
     </Compile>
@@ -776,7 +770,7 @@
     <Folder Include="Math" />
     <Folder Include="Fpv" />
     <Folder Include="Ahrs" />
-    <Folder Include="Led" />
+    <Folder Include="Status" />
     <Folder Include="Gps" />
     <Folder Include="Attitude" />
     <Folder Include="Head" />

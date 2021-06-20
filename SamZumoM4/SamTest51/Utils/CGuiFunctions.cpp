@@ -71,6 +71,7 @@ const char GuiSensorNames[]  = // names for dynamic generation of config GUI
 
 const char GuiFunctionFlagNames[]  = // names for dynamic generation of config GUI
 "Motors On;"
+"Sounds On;"
 "Store Mag Cal;"
 "Erase Mag Cal;"
 ;
@@ -451,9 +452,9 @@ void CGuiFunctions::EvaluateCommand()
 	case GUIP_FUNCTION_FLAGS:
 		{
 			uint32_t RFlags = 0;
-		if(	Config.m_FunctionFlags.FunctionFlag_1)
+		if(	Config.m_FunctionFlags.MotorEnable)
 			RFlags |= 0x1;
-		if(	Config.m_FunctionFlags.FunctionFlag_2)
+		if(	Config.m_FunctionFlags.SoundEnable)
 			RFlags |= 0x2;
 		if(	Config.m_FunctionFlags.FunctionFlag_3)
 			RFlags |= 0x4;
@@ -476,22 +477,22 @@ void CGuiFunctions::EvaluateCommand()
 		break;
 	case GUIP_FUNCTION_FLAGS_NAMES:
 		WriteNamesToOutputFrame(GuiFunctionFlagNames);		break;
-
+	case GUIP_SAVE_FUNCTION_FLAGS:
+		 Acknowledge();
+		if(Config.WriteFunctionFlagsConfig());
+			 Acknowledge();
+		break;
 	case GUIP_SET_FUNCTION_FLAGS:
 		uint16_t R_Flags;		RecieveData((unsigned char*)&R_Flags,2);		Acknowledge();
 		if(R_Flags & 0x01)
-		{
-			Config.m_FunctionFlags.FunctionFlag_1	= true;
-		}
+			Config.m_FunctionFlags.MotorEnable	= true;
 		else
-		{
-			Config.m_FunctionFlags.FunctionFlag_1	= false;
-		}
+			Config.m_FunctionFlags.MotorEnable	= false;
 
 		if(R_Flags & 0x02)
-			Config.m_FunctionFlags.FunctionFlag_2	= true;
+			Config.m_FunctionFlags.SoundEnable	= true;
 		else
-			Config.m_FunctionFlags.FunctionFlag_2	= false;
+			Config.m_FunctionFlags.SoundEnable	= false;
 
 		if(R_Flags & 0x04)
 			Config.m_FunctionFlags.FunctionFlag_3	= true;

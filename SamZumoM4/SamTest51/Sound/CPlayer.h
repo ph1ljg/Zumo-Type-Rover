@@ -14,46 +14,45 @@ class CPlayer
 {
 //variables
 public:
+    bool m_IsPlaying;
 protected:
 private:
-    bool _playing;
-
-    uint32_t _note_duration_us;
-    uint32_t _note_start_us;
-    const char* _string;
-    uint8_t _tempo;
-    uint8_t _default_note_length;
-    uint8_t _volume;
-    size_t _next;
-    uint8_t _octave;
-    float _silence_duration;
-    bool _repeat;
-    enum node_mode_t 
+    uint32_t m_NoteDuration_us;
+    uint32_t m_NoteStart_us;
+    const char* m_SequenceStr;
+    uint8_t m_Tempo;
+    uint8_t m_DefaultNoteLength;
+    uint8_t m_Volume;
+    size_t m_Next;
+    uint8_t m_Octave;
+    float m_SilenceDuration;
+    bool m_Repeat;
+    enum NodeMode_t 
 	{
 	    MODE_NORMAL,
 	    MODE_LEGATO,
 	    MODE_STACCATO
-    } _note_mode;
+    } m_eNoteMode;
 
-
+	
 //functions
 public:
 	CPlayer();
 	~CPlayer();
 	void Update();
 	// initialise ready to play string
-	void prepare_to_play_string(const char* string);
-	void play(const char* string);
-	void stop();
-	void start_silence(float duration);
-	void start_note(float duration, float frequency, float volume);
-	char next_char();
-	uint8_t next_number();
-	size_t next_dots();
-	float rest_duration(uint32_t rest_length, uint8_t dots);
+	void PrepareToPlayString(const char* SequenceStr);
+	void Play(const char* string);
+	void Stop();
+	void StartSilence(float duration);
+	void StartNote(float duration, float frequency, float volume);
+	char NextChar();
+	uint8_t NextNumber();
+	size_t NextDots();
+	float RestDuration(uint32_t rest_length, uint8_t dots);
 
 	// Called when the MML player should start the next action
-	void next_action();
+	void NextAction();
 
 protected:
 private:
