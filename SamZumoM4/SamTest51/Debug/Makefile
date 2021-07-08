@@ -508,7 +508,7 @@ ADDITIONAL_DEPENDENCIES:=
 OUTPUT_FILE_DEP:= ./makedep.mk
 
 LIB_DEP+=  \
-D:/Projects/Phil/SamZumoM4/SamTest51/Lib/libarm_cortexM4lf_math.a
+F:/CSource3/SamZumoM4/SamTest51/Lib/libarm_cortexM4lf_math.a
 
 LINKER_SCRIPT_DEP+=  \
 ../Device_Startup/samd51j19a_flash.ld \

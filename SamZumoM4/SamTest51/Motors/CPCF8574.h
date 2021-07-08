@@ -11,11 +11,11 @@
 
 
 #ifdef TWO_WHEEL_ZUMO
-#define PCF8574_ADDDRESS  0x20
+#define PCF_ADDRESS  0x20
 #endif
 
 #ifdef FOUR_WHEEL_ZUMO
-#define PCF8724_ADDDRESS  0x27
+#define PCF_ADDRESS  0x27
 #endif
 
 
